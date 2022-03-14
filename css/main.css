@@ -352,6 +352,15 @@ ul {
   stroke: none;
 }
 
+sm-tab-header {
+  padding: 0 1.5rem;
+  background-color: rgba(var(--text-color), 0.06);
+}
+
+sm-tab {
+  padding: 0.5rem 0.8rem;
+}
+
 .section {
   display: flex;
   flex-direction: column;
