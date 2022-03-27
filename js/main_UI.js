@@ -1,5 +1,5 @@
 // Global variables
-const appPages = ['dashboard', 'settings'];
+const appPages = ['dashboard', 'userinfo', 'subadmin', 'settings'];
 const domRefs = {};
 let timerId;
 const currentYear = new Date().getFullYear();
@@ -11,16 +11,16 @@ if (!navigator.onLine)
         "error",
         { sound: true }
     );
+window.addEventListener("online", () => {
+    getRef("notification_drawer").clearAll();
+    notify("We are back online.", "success");
+});
 window.addEventListener("offline", () => {
     notify(
         "There seems to be a problem connecting to the internet, Please check you internet connection.",
         "error",
         { pinned: true, sound: true }
     );
-});
-window.addEventListener("online", () => {
-    getRef("notification_drawer").clearAll();
-    notify("We are back online.", "success");
 });
 
 // Use instead of document.getElementById
@@ -96,7 +96,7 @@ class Stack {
     }
     pop() {
         if (this.items.length == 0)
-        return "Underflow";
+            return "Underflow";
         return this.items.pop();
     }
     peek() {
@@ -104,15 +104,16 @@ class Stack {
     }
 }
 
+let zIndex = 10
 // function required for popups or modals to appear
 function showPopup(popupId, pinned) {
     zIndex++
     getRef(popupId).setAttribute('style', `z-index: ${zIndex}`)
-    popupStack = getRef(popupId).show({ pinned, popupStack })
+    getRef(popupId).show({ pinned })
     return getRef(popupId);
 }
 
-// hides the popup or modal 
+// hides the popup or modal
 function hidePopup() {
     if (popupStack.peek() === undefined)
         return;
@@ -168,10 +169,10 @@ async function getPromptInput(title, message = '', isPassword = true, cancelText
 }
 
 //Function for displaying toast notifications. pass in error for mode param if you want to show an error.
-function notify(message, mode, options = {}) {
+function notify(message, type, options = {}) {
     const { pinned = false, sound = false } = options
     let icon
-    switch (mode) {
+    switch (type) {
         case 'success':
             icon = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"/></svg>`
             break;
@@ -273,7 +274,7 @@ function showPage(targetPage, options = {}) {
     else {
         pageId = targetPage.includes('#') ? targetPage.split('#')[1] : targetPage
     }
-    if(!appPages.includes(pageId)) return
+    if (!appPages.includes(pageId)) return
     document.querySelector('.page:not(.hide-completely)').classList.add('hide-completely')
     document.querySelector('.nav-list__item--active').classList.remove('nav-list__item--active')
     getRef(pageId).classList.remove('hide-completely')
