@@ -59,14 +59,14 @@
             </sm-form>
             <div class="grid gap-0-5">
                 <p>New here? Generate your FLO credentials below to continue</p>
-                <button class="button" onclick="generateCredentials()">
+                <sm-button class="button" onclick="generateCredentials()">
                     Get FLO credentials
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
                         fill="#000000">
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                     </svg>
-                </button>
+                </sm-button>
             </div>
         </section>
         <section id="sign_up" class="grid gap-1-5 hide">
@@ -242,7 +242,7 @@
                     </g>
                 </svg>
             </button>
-            <button id="user_signout_popup_button" class="" onclick="showPopup('user_popup')">
+            <button id="user_signout_popup_button" class="" style="display:none" onclick="showPopup('user_popup')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" height="24px" viewBox="0 0 24 24" width="24px"
                     fill="#000000">
                     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -508,9 +508,86 @@
 
     <script id='ui_utils'>
 
+delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
+            getRef('search_articles').value = ''
+            toggleSearch()
+        })
+        const slideInLeft = [
+            {
+                opacity: 0,
+                transform: 'translateX(1rem)'
+            },
+            {
+                opacity: 1,
+                transform: 'translateX(0)'
+            }
+        ]
+        const slideOutLeft = [
+            {
+                opacity: 1,
+                transform: 'translateX(0)'
+            },
+            {
+                opacity: 0,
+                transform: 'translateX(-1rem)'
+            },
+        ]
+        const slideInRight = [
+            {
+                opacity: 0,
+                transform: 'translateX(-1rem)'
+            },
+            {
+                opacity: 1,
+                transform: 'translateX(0)'
+            }
+        ]
+        const slideOutRight = [
+            {
+                opacity: 1,
+                transform: 'translateX(0)'
+            },
+            {
+                opacity: 0,
+                transform: 'translateX(1rem)'
+            },
+        ]
+        const slideInDown = [
+            {
+                opacity: 0,
+                transform: 'translateY(-1rem)'
+            },
+            {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
+        ]
+        const slideInUp = [
+            {
+                opacity: 0,
+                transform: 'translateY(1rem)'
+            },
+            {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
+        ]
+        const slideOutUp = [
+            {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
+            {
+                opacity: 0,
+                transform: 'translateY(-1rem)'
+            },
+        ]
+
+        
 
     </script>
     <script>
+
         function generateCredentials() {
             const animOptions = {
                 fill: 'forwards',
@@ -541,7 +618,6 @@
         function getSignedIn() {
             return new Promise((resolve, reject) => {
                 getRef('sign_in_button').onclick = () => {
-                    debugger
                     resolve(getRef('private_key_field').value.trim())
                     getRef('private_key_field').value = ''
                     hidePopup()
@@ -560,14 +636,17 @@
                 }
             })
         }
-        function signOut() {
-            getConfirmation('Sign out?', 'You are about to sign out of the app, continue?', 'Stay', 'Leave')
+        async function signOut() {
+            /*getConfirmation('Sign out?', 'You are about to sign out of the app, continue?', 'Stay', 'Leave')
                 .then(async (res) => {
                     if (res) {
+                        debugger
                         await floDapps.clearCredentials()
                         location.reload()
                     }
-                })
+                })*/
+            await floDapps.clearCredentials()
+            location.reload()
         }
 
     </script>
@@ -1120,6 +1199,8 @@
             floDapps.launchStartUp().then((result) => {
                 console.log(result);
                 getRef('user_flo_id').value = myFloID
+                getRef('user_login_popup_button').style.display = 'none'
+                getRef('user_signout_popup_button').style.display = ''
 
                 // Check if subadmin 
                 if (floGlobals.subAdmins.includes(myFloID)) {
