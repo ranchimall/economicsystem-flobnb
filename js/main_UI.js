@@ -87,38 +87,22 @@ function throttle(func, delay) {
     }, delay);
 }
 
-class Stack {
-    constructor() {
-        this.items = [];
-    }
-    push(element) {
-        this.items.push(element);
-    }
-    pop() {
-        if (this.items.length == 0)
-            return "Underflow";
-        return this.items.pop();
-    }
-    peek() {
-        return this.items[this.items.length - 1];
-    }
-}
-
 let zIndex = 10
-// function required for popups or modals to appear
-function showPopup(popupId, pinned) {
-    zIndex++
-    getRef(popupId).setAttribute('style', `z-index: ${zIndex}`)
-    getRef(popupId).show({ pinned })
-    return getRef(popupId);
-}
+        // function required for popups or modals to appear
+        function showPopup(popupId, pinned) {
+            zIndex++
+            getRef(popupId).setAttribute('style', `z-index: ${zIndex}`)
+            getRef(popupId).show({ pinned })
+            return getRef(popupId);
+        }
 
-// hides the popup or modal
-function hidePopup() {
-    if (popupStack.peek() === undefined)
-        return;
-    popupStack.peek().popup.hide()
-}
+        // hides the popup or modal
+        function hidePopup() {
+            if (popupStack.peek() === undefined)
+                return;
+            popupStack.peek().popup.hide()
+        }
+
 
 // displays a popup for asking permission. Use this instead of JS confirm
 const getConfirmation = (title, message, cancelText = 'Cancel', confirmText = 'OK') => {
