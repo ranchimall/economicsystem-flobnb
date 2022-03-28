@@ -13,7 +13,7 @@
         rel="stylesheet" />
 </head>
 
-<body data-theme="light" class="hide-completely" onload="onLoadStartUp()">
+<body data-theme="light" class="hide" onload="onLoadStartUp()">
     <sm-notifications id="notification_drawer"></sm-notifications>
     <audio id="notification_sound">
         <source src="https://rmservices.duckdns.org/files/notification-sound.mp3" type="audio/mpeg" />
@@ -99,32 +99,15 @@
         </section>
     </sm-popup>
     <sm-popup id="user_popup">
-        <header slot="header" class="grid gap-1">
-            <div class="flex align-center">
-                <button class="popup__header__close" onclick="hidePopup()">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
-                        fill="#000000">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-                    </svg>
-                </button>
-            </div>
-            <svg id="user_background" viewBox="0 0 1866 801" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_2)">
-                    <rect width="1866" height="801" fill="#256EFF" />
-                    <path d="M655.459 352.774L-428.587 256.546L-150.856 1393.08L655.459 352.774Z" fill="#FFC887" />
-                    <circle cx="1792" cy="300" r="441" fill="#145FF4" />
-                    <path d="M299.304 497.528L-155.279 457.524L-39.1418 933.681L299.304 497.528Z" fill="#FFD4A1" />
-                    <circle cx="1675" cy="36" r="217" fill="#1966FF" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_1_2">
-                        <rect width="1866" height="801" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
-            <h2>Settings</h2>
+        <header slot="header" class="popup__header">
+            <button class="popup__header__close" onclick="hidePopup()">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                        d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                </svg>
+            </button>
+            <h3>Settings</h3>
         </header>
         <section class="grid gap-1-5">
             <div class="grid gap-1">
@@ -151,71 +134,56 @@
         </header>
         <section class="grid gap-2">
             <div class="grid gap-0-5">
-                <div class="label">
-                    <span>Consumer ID</span>
-                    <span id='tx-popup-consumer-id'>F8dfo322CKzPAyzoFJ6SefHZ9AwAujvKXi</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Consumer Amount</span>
-                    <span id='tx-popup-consumer-amount'>1750</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Consumer Tokens</span>
-                    <span id='tx-popup-consumer-tokens'>5250</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>From date</span>
-                    <span id='tx-popup-consumer-fromdate'>2021-12-27</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>To date</span>
-                    <span id='tx-popup-consumer-todate'>2021-12-28</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Investor ID</span>
-                    <span id='tx-popup-investor-id'>FSAH5eajsfgXMGENZvpRTbuZTCBDGrTQQx</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Investor tokens</span>
-                    <span id='tx-popup-investor-tokens'>5250</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Property ID</span>
-                    <span id='tx-popup-property-id'>F8BPRSTD2v6PHmKSJK3puPS7jpy3Mm1Ncq</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Producer tokens</span>
-                    <span id='tx-popup-producer-tokens'>5250</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Referrer ID</span>
-                    <span id='tx-popup-referrer-id'></span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Referrer tokens</span>
-                    <span id='tx-popup-referrer-tokens'>0</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Technology provider tokens</span>
-                    <span id='tx-popup-technology-tokens'>1750</span>
-                </div>
-                <sm-copy id=""></sm-copy>
-                <div class="label">
-                    <span>Transaction ID</span>
-                    <span id='tx-popup-txid'>z0baa7ff9b7255db4fa59592ab46504ca0dd58d9f9af67dc200c6063a04e338e6c</span>
-                </div>
-                <sm-copy id=""></sm-copy>
+                <h5>Consumer ID</h5>
+                <sm-copy id='tx-popup-consumer-id'>F8dfo322CKzPAyzoFJ6SefHZ9AwAujvKXi</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Consumer Amount</h5>
+                <sm-copy id='tx-popup-consumer-amount'>1750</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Consumer Tokens</h5>
+                <sm-copy id='tx-popup-consumer-tokens'>5250</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>From date</h5>
+                <sm-copy id='tx-popup-consumer-fromdate'>2021-12-27</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>To date</h5>
+                <sm-copy id='tx-popup-consumer-todate'>2021-12-28</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Investor ID</h5>
+                <sm-copy id='tx-popup-investor-id'>FSAH5eajsfgXMGENZvpRTbuZTCBDGrTQQx</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Investor tokens</h5>
+                <sm-copy id='tx-popup-investor-tokens'>5250</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Property ID</h5>
+                <sm-copy id='tx-popup-property-id'>F8BPRSTD2v6PHmKSJK3puPS7jpy3Mm1Ncq</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Producer tokens</h5>
+                <sm-copy id='tx-popup-producer-tokens'>5250</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Referrer ID</h5>
+                <sm-copy id='tx-popup-referrer-id'></sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Referrer tokens</h5>
+                <sm-copy id='tx-popup-referrer-tokens'>0</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Technology provider tokens</h5>
+                <sm-copy id='tx-popup-technology-tokens'>1750</sm-copy>
+            </div>
+            <div class="grid gap-0-5">
+                <h5>Transaction ID</h5>
+                <sm-copy id='tx-popup-txid'>z0baa7ff9b7255db4fa59592ab46504ca0dd58d9f9af67dc200c6063a04e338e6c</sm-copy>
             </div>
         </section>
     </sm-popup>
@@ -230,8 +198,8 @@
                 <h4>FLOBNB Economic System</h4>
             </div>
             <theme-toggle></theme-toggle>
-            <button id="user_login_popup_button" class="" onclick="showPopup('sign_in_popup')">
-                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
+            <button id="user_login_popup_button" onclick="showPopup('sign_in_popup')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" enable-background="new 0 0 24 24" height="24px"
                     viewBox="0 0 24 24" width="24px" fill="#000000">
                     <g>
                         <rect fill="none" height="24" width="24" />
@@ -242,13 +210,11 @@
                     </g>
                 </svg>
             </button>
-            <button id="user_signout_popup_button" class="" style="display:none" onclick="showPopup('user_popup')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" height="24px" viewBox="0 0 24 24" width="24px"
-                    fill="#000000">
-                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+            <button id="user_signout_popup_button" class="hide" onclick="showPopup('user_popup')">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z" />
                     <path
-                        d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z">
-                    </path>
+                        d="M2 12c0-.865.11-1.703.316-2.504A3 3 0 0 0 4.99 4.867a9.99 9.99 0 0 1 4.335-2.505 3 3 0 0 0 5.348 0 9.99 9.99 0 0 1 4.335 2.505 3 3 0 0 0 2.675 4.63c.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504a3 3 0 0 0-2.675 4.629 9.99 9.99 0 0 1-4.335 2.505 3 3 0 0 0-5.348 0 9.99 9.99 0 0 1-4.335-2.505 3 3 0 0 0-2.675-4.63C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75A4.993 4.993 0 0 1 12 18c1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75A4.993 4.993 0 0 1 17.196 15a4.993 4.993 0 0 1 2.77-2.25 8.126 8.126 0 0 0 0-1.5A4.993 4.993 0 0 1 17.195 9a4.993 4.993 0 0 1-.564-3.524 7.989 7.989 0 0 0-1.297-.75A4.993 4.993 0 0 1 12 6a4.993 4.993 0 0 1-3.335-1.274 7.99 7.99 0 0 0-1.297.75A4.993 4.993 0 0 1 6.804 9a4.993 4.993 0 0 1-2.77 2.25 8.126 8.126 0 0 0 0 1.5A4.993 4.993 0 0 1 6.805 15zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                 </svg>
             </button>
         </header>
@@ -265,19 +231,21 @@
                     </a>
                 </li>
 
-                <li id="userinfo-nav" style="display:none">
+                <li id="userinfo-nav" class="hide">
                     <a href="#userinfo" class="nav-list__item interact">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="none" d="M0 0h24v24H0z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" height="24px" viewBox="0 0 24 24"
+                            width="24px" fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none"></path>
                             <path
-                                d="M2 12c0-.865.11-1.703.316-2.504A3 3 0 0 0 4.99 4.867a9.99 9.99 0 0 1 4.335-2.505 3 3 0 0 0 5.348 0 9.99 9.99 0 0 1 4.335 2.505 3 3 0 0 0 2.675 4.63c.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504a3 3 0 0 0-2.675 4.629 9.99 9.99 0 0 1-4.335 2.505 3 3 0 0 0-5.348 0 9.99 9.99 0 0 1-4.335-2.505 3 3 0 0 0-2.675-4.63C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75A4.993 4.993 0 0 1 12 18c1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75A4.993 4.993 0 0 1 17.196 15a4.993 4.993 0 0 1 2.77-2.25 8.126 8.126 0 0 0 0-1.5A4.993 4.993 0 0 1 17.195 9a4.993 4.993 0 0 1-.564-3.524 7.989 7.989 0 0 0-1.297-.75A4.993 4.993 0 0 1 12 6a4.993 4.993 0 0 1-3.335-1.274 7.99 7.99 0 0 0-1.297.75A4.993 4.993 0 0 1 6.804 9a4.993 4.993 0 0 1-2.77 2.25 8.126 8.126 0 0 0 0 1.5A4.993 4.993 0 0 1 6.805 15zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z">
+                            </path>
                         </svg>
 
                         <span> User info </span>
                     </a>
                 </li>
 
-                <li id="subadmin-nav" style="display:none">
+                <li id="subadmin-nav" class="hide">
                     <a href="#subadmin" class="nav-list__item interact">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                             <path fill="none" d="M0 0h24v24H0z" />
@@ -285,17 +253,6 @@
                                 d="M2 12c0-.865.11-1.703.316-2.504A3 3 0 0 0 4.99 4.867a9.99 9.99 0 0 1 4.335-2.505 3 3 0 0 0 5.348 0 9.99 9.99 0 0 1 4.335 2.505 3 3 0 0 0 2.675 4.63c.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504a3 3 0 0 0-2.675 4.629 9.99 9.99 0 0 1-4.335 2.505 3 3 0 0 0-5.348 0 9.99 9.99 0 0 1-4.335-2.505 3 3 0 0 0-2.675-4.63C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75A4.993 4.993 0 0 1 12 18c1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75A4.993 4.993 0 0 1 17.196 15a4.993 4.993 0 0 1 2.77-2.25 8.126 8.126 0 0 0 0-1.5A4.993 4.993 0 0 1 17.195 9a4.993 4.993 0 0 1-.564-3.524 7.989 7.989 0 0 0-1.297-.75A4.993 4.993 0 0 1 12 6a4.993 4.993 0 0 1-3.335-1.274 7.99 7.99 0 0 0-1.297.75A4.993 4.993 0 0 1 6.804 9a4.993 4.993 0 0 1-2.77 2.25 8.126 8.126 0 0 0 0 1.5A4.993 4.993 0 0 1 6.805 15zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                         </svg>
                         <span> Subadmin </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#settings" class="nav-list__item interact">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="none" d="M0 0h24v24H0z" />
-                            <path
-                                d="M2 12c0-.865.11-1.703.316-2.504A3 3 0 0 0 4.99 4.867a9.99 9.99 0 0 1 4.335-2.505 3 3 0 0 0 5.348 0 9.99 9.99 0 0 1 4.335 2.505 3 3 0 0 0 2.675 4.63c.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504a3 3 0 0 0-2.675 4.629 9.99 9.99 0 0 1-4.335 2.505 3 3 0 0 0-5.348 0 9.99 9.99 0 0 1-4.335-2.505 3 3 0 0 0-2.675-4.63C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75A4.993 4.993 0 0 1 12 18c1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75A4.993 4.993 0 0 1 17.196 15a4.993 4.993 0 0 1 2.77-2.25 8.126 8.126 0 0 0 0-1.5A4.993 4.993 0 0 1 17.195 9a4.993 4.993 0 0 1-.564-3.524 7.989 7.989 0 0 0-1.297-.75A4.993 4.993 0 0 1 12 6a4.993 4.993 0 0 1-3.335-1.274 7.99 7.99 0 0 0-1.297.75A4.993 4.993 0 0 1 6.804 9a4.993 4.993 0 0 1-2.77 2.25 8.126 8.126 0 0 0 0 1.5A4.993 4.993 0 0 1 6.805 15zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                        </svg>
-                        <span> Settings </span>
                     </a>
                 </li>
             </ul>
@@ -332,17 +289,29 @@
                 </div>
             </section>
 
-            <section id="userinfo" class="page hide-completely" style="display:none">
+            <section id="userinfo" class="page hide">
                 <h1 class="page__title">User Information</h1>
                 <p>All things user</p>
 
-                <div class="section__header">
-                    <div class="grid">
-                        <h3>Overall Balances</h3>
-                        <p></p>
-                    </div>
+                <div class="section__header flex align-center space-between" style="padding: 1rem 0;">
+                    <h3>Summary</h3>
+                    <a href="https://ranchimall.github.io/exchange-market/" class="transaction__link flex align-center"
+                        target="_blank" rel="noopener noreferrer">
+                        <svg class="icon margin-right-0-5" xmlns="http://www.w3.org/2000/svg" height="24px"
+                            viewBox="0 0 24 24" width="24px" fill="#000000">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                        </svg>
+                        Trade
+                    </a>
                 </div>
+
                 <div class="card-wrapper">
+                    <div class="card">
+                        <h3>Total Valuation</h3>
+                        <p id="">-</p>
+                    </div>
                     <div class="card">
                         <h3>Total FLOBNB</h3>
                         <p id="total-flobnb-balance">-</p>
@@ -398,38 +367,10 @@
                     </div>
                 </div>
                 <div id='user-tx-section' class="card-wrapper">
-                    <div class="transaction-card card" data-tx="1">
-                        <h3>Consumer</h3>
-                        <p>
-                        <div>Token amount : 4000</div>
-                        <div>Days stayed : 2</div>
-                        <div>2/2/1994 4/2/1994</div>
-                        </p>
-                    </div>
-                    <div class="transaction-card card" data-tx="2">
-                        <h3>Producer</h3>
-                        <p>
-                        <div>Token amount : 4000</div>
-                        <div>Days stayed : 2</div>
-                        <div>2/2/1994 4/2/1994</div>
-                        </p>
-                    </div>
-                    <div class="transaction-card card" data-tx="3">
-                        <h3>Investor</h3>
-                        <p>
-                        <div>Token amount : 4000</div>
-                        </p>
-                    </div>
-                    <div class="transaction-card card" data-tx="4">
-                        <h3>Referrer</h3>
-                        <p>
-                        <div>Token amount : 4000</div>
-                        </p>
-                    </div>
                 </div>
             </section>
 
-            <section id="subadmin" class="page hide-completely" style="display:none">
+            <section id="subadmin" class="page hide">
                 <h1 class="page__title">Subadmin</h1>
                 <p>
                 </p>
@@ -445,10 +386,10 @@
                     <sm-input id='subadmin-form-upiID' placeholder='UPI ID'></sm-input>
                     <sm-input id='subadmin-form-email' placeholder='Email'></sm-input>
                     <sm-input id='subadmin-form-amount' placeholder='Amount'></sm-input>
-                    <sm-input id='subadmin-form-propertyFLOID' placeholder='Property FLO Id'></sm-input>
-                    <sm-input id='subadmin-form-referrerFLOID' placeholder='Referrer FLO Id'></sm-input>
+                    <sm-input id='subadmin-form-propertyFLOID' placeholder='Property FLO Id' data-flo-id></sm-input>
+                    <sm-input id='subadmin-form-referrerFLOID' placeholder='Referrer FLO Id' data-flo-id></sm-input>
                     <sm-input id='subadmin-form-referrerName' placeholder='Referrer Name'></sm-input>
-                    <sm-input id='subadmin-form-investorFLOID' placeholder='Investor FLO ID'></sm-input>
+                    <sm-input id='subadmin-form-investorFLOID' placeholder='Investor FLO ID' data-flo-id></sm-input>
                     <sm-input id='subadmin-form-numberOfDays' placeholder='Number of days'></sm-input>
                     <sm-input id='subadmin-form-fromDate' placeholder='From Date' type='date'></sm-input>
                     <sm-input id='subadmin-form-toDate' placeholder='To Date' type='date'></sm-input>
@@ -459,15 +400,30 @@
                 <file-input multiple>Select file</file-input>
 
             </section>
-
-            <section id="settings" class="page hide-completely">
-                <h1 class="page__title">Settings</h1>
-                <p>
-                    Settings Page
-                </p>
-            </section>
         </article>
     </main>
+    <template id="tx-card-1">
+        <div class="transaction-card card">
+            <h3 class="txcard-type capitalize"></h3>
+            <p>
+            <div class="txcard-amount"></div>
+            <div class="txcard-split"></div>
+            <div class="txcard-days-stayed"></div>
+            <div class="txcard-from-to-date"></div>
+            </p>
+        </div>
+    </template>
+    <template id="tx-card-2">
+        <div class="transaction-card card">
+            <h3 class="txcard-type capitalize"></h3>
+            <p>
+            <div class="txcard-split"></div>
+            <div class="txcard-days-stayed"></div>
+            <div class="txcard-from-to-date"></div>
+            </p>
+        </div>
+    </template>
+
     <script src="js/main_UI.js"></script>
     <script src="js/components.min.js"></script>
     <script src="js/floExchangeAPI.js"></script>
@@ -508,10 +464,6 @@
 
     <script id='ui_utils'>
 
-delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
-            getRef('search_articles').value = ''
-            toggleSearch()
-        })
         const slideInLeft = [
             {
                 opacity: 0,
@@ -583,10 +535,283 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
             },
         ]
 
-        
-
     </script>
     <script>
+
+        const render = {
+            transactionCard({userRole, details, vectorClock}) {
+                const clone = getRef(userRole == 'consumer' ? 'tx-card-1' : 'tx-card-2').content.cloneNode(true).firstElementChild;
+                clone.querySelector('.txcard-type').textContent = userRole;
+                clone.dataset.vectorclock = vectorClock;
+                const {
+                    consumer_amount,
+                    consumer_split,
+                    producer_split,
+                    investor_split,
+                    referrer_split,
+                    days_stayed,
+                    from_date,
+                    to_date
+                } = details;
+
+                clone.querySelector('.txcard-days-stayed').textContent = `${days_stayed} days stayed`;
+                clone.querySelector('.txcard-from-to-date').textContent = `From ${from_date} to ${to_date}`;
+
+                switch (userRole) {
+                    case 'consumer':
+                        clone.querySelector('.txcard-amount').textContent = `${formatAmount(consumer_amount)} spent`;
+                        clone.querySelector('.txcard-split').textContent = `${consumer_split} tokens received`;
+                        break;
+                    case 'property':
+                        clone.querySelector('.txcard-split').textContent = `${producer_split} tokens received`;
+                        break;
+                    case 'investor':
+                        clone.querySelector('.txcard-split').textContent = `${investor_split} tokens received`;
+                        break;
+                    case 'referrer':
+                        clone.querySelector('.txcard-split').textContent = `${referrer_split} tokens received`;
+                        break;
+                }
+                return clone
+            }
+
+        }
+
+        function update_element(id, value) {
+            document.getElementById(id).textContent = value;
+        }
+
+        function update_overview_ui_data() {
+            // overview
+            update_element(
+                "total-amount-issued",
+                formatAmount(parseFloat(localStorage.getItem("total_amount")))
+            );
+            update_element(
+                "total-customer-tokens",
+                localStorage.getItem("consumer_split")
+            );
+            update_element(
+                "total-producer-tokens",
+                localStorage.getItem("producer_split")
+            );
+            update_element(
+                "total-investor-tokens",
+                localStorage.getItem("investor_split")
+            );
+            update_element(
+                "total-referrer-tokens",
+                localStorage.getItem("referrer_split")
+            );
+            update_element(
+                "total-technology-provider-tokens",
+                localStorage.getItem("technology_provider_split")
+            );
+        }
+
+        function categorize_userrole_transaction(floid, transaction) {
+            if (transaction['consumer_floid'] == floid) {
+                return 'consumer';
+            }
+
+            if (transaction['investor_floid'] == floid) {
+                return 'investor';
+            }
+
+            if (transaction['property_floid'] == floid) {
+                return 'property';
+            }
+
+            if (transaction['referrer_floid'] == floid) {
+                return 'referrer';
+            }
+
+            if (transaction['technology_provider_floid'] == floid) {
+                return 'technology_provider';
+            }
+        }
+
+        function create_card(userrole, transaction, vectorclock) {
+            if (userrole == 'consumer') {
+                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-vectorclock="${vectorclock}">
+                        <h3>Consumer</h3>
+                        <p>
+                        <div>Rs spent : ${transaction.consumer_amount}</div>
+                        <div>Token amount : ${transaction.consumer_split}</div>
+                        <div>Days stayed : ${transaction.days_stayed}</div>
+                        <div>From ${transaction.from_date} to ${transaction.to_date}</div>
+                        </p>
+                    </div>` + document.getElementById('user-tx-section').innerHTML
+            }
+
+            if (userrole == 'property') {
+                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-vectorclock="${vectorclock}">
+                        <h3>Producer</h3>
+                        <p>
+                        <div>Token amount : ${transaction.producer_split}</div>
+                        <div>Days stayed : ${transaction.days_stayed}</div>
+                        <div>From ${transaction.from_date} to ${transaction.to_date}</div>
+                        </p>
+                    </div>` + document.getElementById('user-tx-section').innerHTML
+            }
+
+            if (userrole == 'investor') {
+                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-vectorclock="${vectorclock}">
+                        <h3>Investor</h3>
+                        <p>
+                        <div>Token amount : ${transaction.investor_split}</div>
+                        </p>
+                    </div>` + document.getElementById('user-tx-section').innerHTML
+            }
+
+            if (userrole == 'referrer') {
+                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-vectorclock="${vectorclock}">
+                        <h3>Referrer</h3>
+                        <p>
+                        <div>Token amount : ${transaction.referrer_split}</div>
+                        </p>
+                    </div>` + document.getElementById('user-tx-section').innerHTML
+            }
+
+        }
+
+
+        let transactionsLazyLoader
+        function render_user_transactions(transaction_dictionary) {
+            const frag = document.createDocumentFragment();
+            let arrayOfTransactions = []
+            for (let vectorClock in transaction_dictionary) {
+                // do something for each key in the object 
+                let userRole = categorize_userrole_transaction(myFloID, transaction_dictionary[vectorClock])
+                arrayOfTransactions.push({userRole, details: transaction_dictionary[vectorClock], vectorClock})
+            }
+            transactionsLazyLoader = new LazyLoader('#user-tx-section',arrayOfTransactions, render.transactionCard)
+            transactionsLazyLoader.init()
+        }
+
+        function update_user_ui_data() {
+            // User Info
+            let promise1 = floExchangeAPI.getBalance(myFloID, "flobnb");
+            let promise2 = fetch(`https://ranchimallflo.duckdns.org/api/v1.0/getFloAddressBalance?floAddress=${myFloID}&token=flobnb`);
+
+            Promise.all([promise1, promise2]).then((results) => {
+                update_element("exchange-flobnb-balance", parseFloat(results[0].balance));
+                results[1].json().then((blockchain_data) => {
+                    if (blockchain_data["balance"] == null)
+                        blockchain_data["balance"] = 0;
+                    update_element("blockchain-flobnb-balance", parseFloat(blockchain_data["balance"]));
+                    update_element("total-flobnb-balance", parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance));
+                });
+            });
+
+            // Token split Info
+            let [floid_balances, floid_transactions] = find_balances_txs_floid(myFloID);
+
+            update_element("total-consumertoken-balance", floid_balances["consumer_amt"]);
+            update_element(
+                "total-propertytoken-balance",
+                floid_balances["property_amt"]
+            );
+            update_element(
+                "total-investortoken-balance",
+                floid_balances["investor_amt"]
+            );
+            update_element(
+                "total-referrertoken-balance",
+                floid_balances["referrer_amt"]
+            );
+
+            render_user_transactions(floid_transactions);
+        }
+
+        function load_overview_data() {
+            return new Promise((resolve, reject) => {
+                let promise1 = floCloudAPI.requestObjectData("flobnb_base", {
+                    callback: (d, e) => null,
+                });
+                let promise2 = floCloudAPI.requestGeneralData("flobnb_data", {
+                    senderID: floGlobals.subAdmins,
+                    callback: (d, e) => {
+                        console.log("CALLBACK");
+                        if (e) return;
+                        let consumer_split =
+                            parseFloat(localStorage.getItem("consumer_split")) || 0,
+                            producer_split =
+                                parseFloat(localStorage.getItem("producer_split")) || 0,
+                            investor_split =
+                                parseFloat(localStorage.getItem("investor_split")) || 0,
+                            referrer_split =
+                                parseFloat(localStorage.getItem("referrer_split")) || 0,
+                            technology_provider_split =
+                                parseFloat(
+                                    localStorage.getItem("technology_provider_split")
+                                ) || 0,
+                            total_amount =
+                                parseFloat(localStorage.getItem("total_amount")) || 0;
+
+                        for (let v in d) {
+                            consumer_split += d[v].message.consumer_split;
+                            producer_split += d[v].message.producer_split;
+                            investor_split += d[v].message.investor_split;
+                            referrer_split += d[v].message.referrer_split;
+                            technology_provider_split += d[v].message.technology_provider_split;
+                            total_amount += d[v].message.consumer_amount;
+                        }
+
+                        localStorage.setItem("consumer_split", consumer_split);
+                        localStorage.setItem("producer_split", producer_split);
+                        localStorage.setItem("investor_split", investor_split);
+                        localStorage.setItem("referrer_split", referrer_split);
+                        localStorage.setItem("technology_provider_split", technology_provider_split);
+                        localStorage.setItem("total_amount", total_amount);
+
+                        update_overview_ui_data();
+                    },
+                });
+
+                Promise.all([promise1, promise2])
+                    .then((r) => resolve(r))
+                    .catch((e) => reject(e));
+            });
+        }
+
+        function fill_tx_popup(vectorclock) {
+
+            let key = floCloudAPI.util.filterKey("flobnb_data", {});
+            const {
+                consumer_floid,
+                consumer_amount,
+                consumer_split,
+                from_date,
+                to_date,
+                investor_floid,
+                investor_split,
+                property_floid,
+                producer_split,
+                referrer_floid,
+                referrer_split,
+                technology_provider_split,
+                txid
+            } = floGlobals.generalData[key][vectorclock]['message']
+
+            getRef('tx-popup-consumer-id').value = consumer_floid;
+            getRef('tx-popup-consumer-amount').value = consumer_amount;
+            getRef('tx-popup-consumer-tokens').value = consumer_split;
+            getRef('tx-popup-consumer-fromdate').value = from_date;
+            getRef('tx-popup-consumer-todate').value = to_date;
+            getRef('tx-popup-investor-id').value = investor_floid;
+            getRef('tx-popup-investor-tokens').value = investor_split;
+            getRef('tx-popup-property-id').value = property_floid;
+            getRef('tx-popup-producer-tokens').value = producer_split;
+            getRef('tx-popup-referrer-id').value = referrer_floid;
+            getRef('tx-popup-referrer-tokens').value = referrer_split;
+            getRef('tx-popup-technology-tokens').value = technology_provider_split;
+            getRef('tx-popup-txid').value = txid;
+
+
+        }
+
+
 
         function generateCredentials() {
             const animOptions = {
@@ -624,7 +849,7 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
                     notify('Signed in', 'success')
                 }
                 getRef('sign_up_button').onclick = () => {
-                    getConfirmation('Sign in?', { message: 'Make sure you have copied your private key.' })
+                    getConfirmation('Sign in?', 'Make sure you have copied your private key.')
                         .then((res) => {
                             if (res) {
                                 resolve(getRef('generated_private_key').value.trim())
@@ -637,16 +862,13 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
             })
         }
         async function signOut() {
-            /*getConfirmation('Sign out?', 'You are about to sign out of the app, continue?', 'Stay', 'Leave')
+            getConfirmation('Sign out?', 'You are about to sign out of the app, continue?', 'Stay', 'Leave')
                 .then(async (res) => {
                     if (res) {
-                        debugger
                         await floDapps.clearCredentials()
                         location.reload()
                     }
-                })*/
-            await floDapps.clearCredentials()
-            location.reload()
+                })
         }
 
     </script>
@@ -743,8 +965,7 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
 
             for (let i = 0; i < schedule_keys.length; i++) {
                 // Find the starting point
-                var [rangenumber, next_rangenumber, token_release_amount_per_rupee] =
-                    return_rangenumbers(i, schedule_keys, schedule);
+                var [rangenumber, next_rangenumber, token_release_amount_per_rupee] = return_rangenumbers(i, schedule_keys, schedule);
                 //console.log(`${rangenumber}-${next_rangenumber}           ${token_release_amount_per_rupee}`)
                 var range_item = new Array();
                 // check if current amount falls in the range
@@ -811,25 +1032,25 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
                 if (floGlobals.generalData[fk][d].message.consumer_floid == floID) {
                     floid_balances["consumer_amt"] +=
                         floGlobals.generalData[fk][d].message.consumer_split;
-                    floid_transactions[floGlobals.generalData[fk][d].message.txid] = floGlobals.generalData[fk][d].message
+                    floid_transactions[d] = floGlobals.generalData[fk][d].message
                 }
 
                 if (floGlobals.generalData[fk][d].message.property_floid == floID) {
                     floid_balances["property_amt"] +=
                         floGlobals.generalData[fk][d].message.producer_split;
-                    floid_transactions[floGlobals.generalData[fk][d].message.txid] = floGlobals.generalData[fk][d].message
+                    floid_transactions[d] = floGlobals.generalData[fk][d].message
                 }
 
                 if (floGlobals.generalData[fk][d].message.investor_floid == floID) {
                     floid_balances["investor_amt"] +=
                         floGlobals.generalData[fk][d].message.investor_split;
-                    floid_transactions[floGlobals.generalData[fk][d].message.txid] = floGlobals.generalData[fk][d].message
+                    floid_transactions[d] = floGlobals.generalData[fk][d].message
                 }
 
                 if (floGlobals.generalData[fk][d].message.referrer_floid == floID) {
                     floid_balances["referrer_amt"] +=
                         floGlobals.generalData[fk][d].message.referrer_split;
-                    floid_transactions[floGlobals.generalData[fk][d].message.txid] = floGlobals.generalData[fk][d].message
+                    floid_transactions[d] = floGlobals.generalData[fk][d].message
                 }
             }
             return [floid_balances, floid_transactions];
@@ -933,14 +1154,10 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
             data = {
                 consumer_floid: document.getElementById("subadmin-form-floID").value,
                 consumer_name: document.getElementById("subadmin-form-name").value,
-                consumer_upi_address: document.getElementById("subadmin-form-upiID")
-                    .value,
+                consumer_upi_address: document.getElementById("subadmin-form-upiID").value,
                 consumer_email: document.getElementById("subadmin-form-email").value,
-                consumer_amount: parseFloat(
-                    document.getElementById("subadmin-form-amount").value
-                ),
-                investor_floid: document.getElementById("subadmin-form-investorFLOID")
-                    .value,
+                consumer_amount: parseFloat(document.getElementById("subadmin-form-amount").value),
+                investor_floid: document.getElementById("subadmin-form-investorFLOID").value,
                 property_floid: document.getElementById("subadmin-form-propertyFLOID")
                     .value,
                 days_stayed: document.getElementById("subadmin-form-numberOfDays")
@@ -964,225 +1181,6 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
                 });
         }
 
-        function update_element(id, value) {
-            document.getElementById(id).innerText = value;
-        }
-
-        function update_overview_ui_data() {
-            // overview
-            update_element(
-                "total-amount-issued",
-                formatAmount(parseFloat(localStorage.getItem("total_amount")))
-            );
-            update_element(
-                "total-customer-tokens",
-                localStorage.getItem("consumer_split")
-            );
-            update_element(
-                "total-producer-tokens",
-                localStorage.getItem("producer_split")
-            );
-            update_element(
-                "total-investor-tokens",
-                localStorage.getItem("investor_split")
-            );
-            update_element(
-                "total-referrer-tokens",
-                localStorage.getItem("referrer_split")
-            );
-            update_element(
-                "total-technology-provider-tokens",
-                localStorage.getItem("technology_provider_split")
-            );
-        }
-
-        function categorize_userrole_transaction(floid, transaction) {
-            if (transaction['consumer_floid'] == floid) {
-                return 'consumer';
-            }
-
-            if (transaction['investor_floid'] == floid) {
-                return 'investor';
-            }
-
-            if (transaction['property_floid'] == floid) {
-                return 'property';
-            }
-
-            if (transaction['referrer_floid'] == floid) {
-                return 'referrer';
-            }
-
-            if (transaction['technology_provider_floid'] == floid) {
-                return 'technology_provider';
-            }
-        }
-
-        function create_card(userrole, transaction) {
-            if (userrole == 'consumer') {
-                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-tx="${transaction.txid}">
-                        <h3>Consumer</h3>
-                        <p>
-                        <div>Rs spent : ${transaction.consumer_amount}</div>
-                        <div>Token amount : ${transaction.consumer_split}</div>
-                        <div>Days stayed : ${transaction.days_stayed}</div>
-                        <div>From ${transaction.from_date} to ${transaction.to_date}</div>
-                        </p>
-                    </div>` + document.getElementById('user-tx-section').innerHTML
-            }
-
-            if (userrole == 'property') {
-                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-tx="1">
-                        <h3>Producer</h3>
-                        <p>
-                        <div>Token amount : ${transaction.producer_split}</div>
-                        <div>Days stayed : ${transaction.days_stayed}</div>
-                        <div>From ${transaction.from_date} to ${transaction.to_date}</div>
-                        </p>
-                    </div>` + document.getElementById('user-tx-section').innerHTML
-            }
-
-            if (userrole == 'investor') {
-                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-tx="1">
-                        <h3>Investor</h3>
-                        <p>
-                        <div>Token amount : ${transaction.investor_split}</div>
-                        </p>
-                    </div>` + document.getElementById('user-tx-section').innerHTML
-            }
-
-            if (userrole == 'referrer') {
-                document.getElementById('user-tx-section').innerHTML = `<div class="transaction-card card" data-tx="1">
-                        <h3>Referrer</h3>
-                        <p>
-                        <div>Token amount : ${transaction.referrer_split}</div>
-                        </p>
-                    </div>` + document.getElementById('user-tx-section').innerHTML
-            }
-        }
-
-        function render_user_transactions(transaction_dictionary) {
-            for (let key in transaction_dictionary) {
-                // do something for each key in the object 
-                let userrole = categorize_userrole_transaction(myFloID, transaction_dictionary[key])
-                create_card(userrole, transaction_dictionary[key])
-            }
-        }
-
-        function update_user_ui_data() {
-            // User Info
-            let promise1 = floExchangeAPI.getBalance(myFloID, "flobnb");
-            let promise2 = fetch(`https://ranchimallflo.duckdns.org/api/v1.0/getFloAddressBalance?floAddress=${myFloID}&token=flobnb`);
-
-            Promise.all([promise1, promise2]).then((results) => {
-                update_element(
-                    "exchange-flobnb-balance",
-                    parseFloat(results[0].balance)
-                );
-                results[1].json().then((blockchain_data) => {
-                    if (blockchain_data["balance"] == null)
-                        blockchain_data["balance"] = 0;
-                    update_element(
-                        "blockchain-flobnb-balance",
-                        parseFloat(blockchain_data["balance"])
-                    );
-                    update_element(
-                        "total-flobnb-balance",
-                        parseFloat(blockchain_data["balance"] + parseFloat(results[0].balance))
-                    );
-                });
-            });
-
-            // Token split Info
-            let [floid_balances, floid_transactions] = find_balances_txs_floid(myFloID);
-            myfloid_transactions = floid_transactions
-
-            update_element(
-                "total-consumertoken-balance",
-                floid_balances["consumer_amt"]
-            );
-            update_element(
-                "total-propertytoken-balance",
-                floid_balances["property_amt"]
-            );
-            update_element(
-                "total-investortoken-balance",
-                floid_balances["investor_amt"]
-            );
-            update_element(
-                "total-referrertoken-balance",
-                floid_balances["referrer_amt"]
-            );
-
-            render_user_transactions(floid_transactions);
-        }
-
-        function load_overview_data() {
-            return new Promise((resolve, reject) => {
-                let promise1 = floCloudAPI.requestObjectData("flobnb_base", {
-                    callback: (d, e) => null,
-                });
-                let promise2 = floCloudAPI.requestGeneralData("flobnb_data", {
-                    senderID: floGlobals.subAdmins,
-                    callback: (d, e) => {
-                        console.log("CALLBACK");
-                        if (e) return;
-                        let consumer_split =
-                            parseFloat(localStorage.getItem("consumer_split")) || 0,
-                            producer_split =
-                                parseFloat(localStorage.getItem("producer_split")) || 0,
-                            investor_split =
-                                parseFloat(localStorage.getItem("investor_split")) || 0,
-                            referrer_split =
-                                parseFloat(localStorage.getItem("referrer_split")) || 0,
-                            technology_provider_split =
-                                parseFloat(
-                                    localStorage.getItem("technology_provider_split")
-                                ) || 0,
-                            total_amount =
-                                parseFloat(localStorage.getItem("total_amount")) || 0;
-
-                        for (let v in d) {
-                            consumer_split += d[v].message.consumer_split;
-                            producer_split += d[v].message.producer_split;
-                            investor_split += d[v].message.investor_split;
-                            referrer_split += d[v].message.referrer_split;
-                            technology_provider_split += d[v].message.technology_provider_split;
-                            total_amount += d[v].message.consumer_amount;
-                        }
-
-                        localStorage.setItem("consumer_split", consumer_split);
-                        localStorage.setItem("producer_split", producer_split);
-                        localStorage.setItem("investor_split", investor_split);
-                        localStorage.setItem("referrer_split", referrer_split);
-                        localStorage.setItem("technology_provider_split", technology_provider_split);
-                        localStorage.setItem("total_amount", total_amount);
-
-                        update_overview_ui_data();
-                    },
-                });
-
-                Promise.all([promise1, promise2])
-                    .then((r) => resolve(r))
-                    .catch((e) => reject(e));
-            });
-        }
-
-        function fill_tx_popup(txid) {
-            getRef('tx-popup-consumer-id').innerText = myfloid_transactions[txid].consumer_floid;
-            getRef('tx-popup-consumer-amount').innerText = myfloid_transactions[txid].consumer_amount;
-            getRef('tx-popup-consumer-tokens').innerText = myfloid_transactions[txid].consumer_split;
-            getRef('tx-popup-consumer-fromdate').innerText = myfloid_transactions[txid].from_date;
-            getRef('tx-popup-consumer-todate').innerText = myfloid_transactions[txid].to_date;
-            getRef('tx-popup-investor-id').innerText = myfloid_transactions[txid].investor_floid;
-            getRef('tx-popup-investor-tokens').innerText = myfloid_transactions[txid].investor_split;
-            getRef('tx-popup-property-id').innerText = myfloid_transactions[txid].property_floid;
-            getRef('tx-popup-producer-tokens').innerText = myfloid_transactions[txid].producer_split;
-            getRef('tx-popup-referrer-id').innerText = myfloid_transactions[txid].referrer_floid;
-            getRef('tx-popup-referrer-tokens').innerText = myfloid_transactions[txid].referrer_split;
-            getRef('tx-popup-technology-tokens').innerText = myfloid_transactions[txid].technology_provider_split;
-            getRef('tx-popup-txid').innerText = myfloid_transactions[txid].txid;
-        }
 
         async function onLoadStartUp() {
             //floDapps.addStartUpFunction('Sample', Promised Function)
@@ -1199,29 +1197,27 @@ delegate(getRef('search_suggestions'), 'click', '.search-suggestion', e => {
             floDapps.launchStartUp().then((result) => {
                 console.log(result);
                 getRef('user_flo_id').value = myFloID
-                getRef('user_login_popup_button').style.display = 'none'
-                getRef('user_signout_popup_button').style.display = ''
+                getRef('user_login_popup_button').classList.add('hide')
+                getRef('user_signout_popup_button').classList.remove('hide')
 
                 // Check if subadmin 
                 if (floGlobals.subAdmins.includes(myFloID)) {
-                    document.getElementById('subadmin-nav').style.display = ''
-                    document.getElementById('subadmin').style.display = ''
+                    document.getElementById('subadmin-nav').classList.remove('hide')
+                    document.getElementById('subadmin').classList.remove('hide')
                 }
 
                 getRef('user-tx-section').addEventListener('click', event => {
                     if (event.target.closest(".transaction-card")) {
-                        const txid = event.target.closest(".transaction-card").dataset.tx
-                        console.log(txid)
+                        const vectorclock = event.target.closest(".transaction-card").dataset.vectorclock
+                        console.log(vectorclock)
                         console.log(event.target)
-                        debugger
-                        fill_tx_popup(txid)
+                        fill_tx_popup(vectorclock)
                         showPopup('tx_popup')
                     }
                 })
 
                 // Show userinfo 
-                document.getElementById('userinfo').style.display = ''
-                document.getElementById('userinfo-nav').style.display = ''
+                document.getElementById('userinfo-nav').classList.remove('hide')
                 document.getElementById('userinfo-nav').click()
                 update_user_ui_data()
 

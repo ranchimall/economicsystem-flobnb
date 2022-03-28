@@ -203,9 +203,10 @@ function getFormatedTime(time, relative) {
 
 window.addEventListener('hashchange', e => showPage(window.location.hash))
 window.addEventListener("load", () => {
-    document.body.classList.remove('hide-completely')
+    document.body.classList.remove('hide')
+    document.querySelectorAll('sm-input[data-flo-id]').forEach(input => input.customValidation = floCrypto.validateAddr)
+    document.querySelectorAll('sm-input[data-private-key]').forEach(input => input.customValidation = floCrypto.getPubKeyHex)
     showPage(window.location.hash)
-    // document.querySelectorAll('sm-input[data-flo-id]').forEach(input => input.customValidation = validateAddr)
     document.addEventListener('keyup', (e) => {
         if (e.code === 'Escape') {
             hidePopup()
@@ -259,9 +260,9 @@ function showPage(targetPage, options = {}) {
         pageId = targetPage.includes('#') ? targetPage.split('#')[1] : targetPage
     }
     if (!appPages.includes(pageId)) return
-    document.querySelector('.page:not(.hide-completely)').classList.add('hide-completely')
+    document.querySelector('.page:not(.hide)').classList.add('hide')
     document.querySelector('.nav-list__item--active').classList.remove('nav-list__item--active')
-    getRef(pageId).classList.remove('hide-completely')
+    getRef(pageId).classList.remove('hide')
     getRef(pageId).animate([
         {
             opacity: 0,
@@ -286,5 +287,84 @@ function showPage(targetPage, options = {}) {
     }
     if (hashChange && window.innerWidth < 640) {
         getRef('side_nav').close()
+    }
+}
+// class based lazy loading
+class LazyLoader {
+    constructor(container, elementsToRender, renderFn, options = {}) {
+        const { batchSize = 10, freshRender } = options
+
+        this.elementsToRender = elementsToRender
+        this.arrayOfElements = (typeof elementsToRender === 'function') ? this.elementsToRender() : elementsToRender || []
+        this.renderFn = renderFn
+        this.intersectionObserver
+
+        this.batchSize = batchSize
+        this.freshRender = freshRender
+
+        this.lazyContainer = document.querySelector(container)
+
+        this.update = this.update.bind(this)
+        this.render = this.render.bind(this)
+        this.init = this.init.bind(this)
+        this.clear = this.clear.bind(this)
+    }
+    init() {
+        this.intersectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    observer.disconnect()
+                    this.render({ lazyLoad: true })
+                }
+            })
+        }, {
+            threshold: 0.3
+        })
+        this.mutationObserver = new MutationObserver(mutationList => {
+            mutationList.forEach(mutation => {
+                if (mutation.type === 'childList') {
+                    if (mutation.addedNodes.length) {
+                        this.intersectionObserver.observe(this.lazyContainer.lastElementChild)
+                    }
+                }
+            })
+        })
+        this.mutationObserver.observe(this.lazyContainer, {
+            childList: true,
+        })
+        this.render()
+    }
+    update(elementsToRender) {
+        this.arrayOfElements = (typeof elementsToRender === 'function') ? this.elementsToRender() : elementsToRender || []
+        this.render()
+    }
+    render(options = {}) {
+        let { lazyLoad = false } = options
+        const frag = document.createDocumentFragment();
+        if (lazyLoad) {
+            this.updateStartIndex = this.updateEndIndex
+            this.updateEndIndex = this.arrayOfElements.length > this.updateEndIndex + this.batchSize ? this.updateEndIndex + this.batchSize : this.arrayOfElements.length
+        } else {
+            this.intersectionObserver.disconnect()
+            this.lazyContainer.innerHTML = ``;
+            this.updateStartIndex = 0
+            this.updateEndIndex = this.arrayOfElements.length > this.batchSize ? this.batchSize : this.arrayOfElements.length
+        }
+        for (let index = this.updateStartIndex; index < this.updateEndIndex; index++) {
+            frag.append(this.renderFn(this.arrayOfElements[index]))
+        }
+        this.lazyContainer.append(frag)
+        // Callback to be called if elements are updated or rendered for first time
+        if (!lazyLoad && this.freshRender)
+            this.freshRender()
+    }
+    clear() {
+        this.intersectionObserver.disconnect()
+        this.mutationObserver.disconnect()
+        this.lazyContainer.innerHTML = ``;
+    }
+    reset() {
+        this.arrayOfElements = (typeof this.elementsToRender === 'function') ? this.elementsToRender() : this.elementsToRender || []
+        this.render()
     }
 }
