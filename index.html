@@ -310,7 +310,7 @@
                 <div class="card-wrapper">
                     <div class="card">
                         <h3>Total Valuation</h3>
-                        <p id="">-</p>
+                        <p id="total-flobnb-valuation">-</p>
                     </div>
                     <div class="card">
                         <h3>Total FLOBNB</h3>
@@ -693,14 +693,16 @@
             // User Info
             let promise1 = floExchangeAPI.getBalance(myFloID, "flobnb");
             let promise2 = fetch(`https://ranchimallflo.duckdns.org/api/v1.0/getFloAddressBalance?floAddress=${myFloID}&token=flobnb`);
+            let promise3 = floExchangeAPI.getRates();
 
-            Promise.all([promise1, promise2]).then((results) => {
+            Promise.all([promise1, promise2, promise3]).then((results) => {
                 update_element("exchange-flobnb-balance", parseFloat(results[0].balance));
                 results[1].json().then((blockchain_data) => {
                     if (blockchain_data["balance"] == null)
                         blockchain_data["balance"] = 0;
                     update_element("blockchain-flobnb-balance", parseFloat(blockchain_data["balance"]));
                     update_element("total-flobnb-balance", parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance));
+                    update_element("total-flobnb-valuation", formatAmount((parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance)) * parseFloat(results[2].flobnb)));
                 });
             });
 
