@@ -241,7 +241,7 @@
                             </path>
                         </svg>
 
-                        <span> User info </span>
+                        <span> My Tokens </span>
                     </a>
                 </li>
 
@@ -263,7 +263,7 @@
                 <p>Details of overall tokens issued</p>
                 <div class="card-wrapper">
                     <div class="card">
-                        <h3>FLOBNB Price</h3>
+                        <h3>Price per FLOBNB</h3>
                         <p id="flobnb-price">-</p>
                     </div>
                     <div class="card">
@@ -298,8 +298,8 @@
             </section>
 
             <section id="userinfo" class="page hide">
-                <h1 class="page__title">User Information</h1>
-                <p>All things user</p>
+                <h1 class="page__title">My Token Information</h1>
+                <p>Information of user <span id='userpage-userfloid'></span></p>
 
                 <div class="section__header flex align-center space-between" style="padding: 1rem 0;">
                     <h3>Summary</h3>
@@ -317,19 +317,23 @@
 
                 <div class="card-wrapper">
                     <div class="card">
-                        <h3>Total Valuation</h3>
+                        <h3>My Token Valuation</h3>
                         <p id="total-flobnb-valuation">-</p>
                     </div>
                     <div class="card">
-                        <h3>Total FLOBNB</h3>
+                        <h3>My Total FLOBNB</h3>
                         <p id="total-flobnb-balance">-</p>
                     </div>
                     <div class="card">
-                        <h3>Exchange FLOBNB</h3>
+                        <h3>Price per FLOBNB</h3>
+                        <p id="flobnb-price-userpage">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>My FLOBNB on Exchange</h3>
                         <p id="exchange-flobnb-balance">-</p>
                     </div>
                     <div class="card">
-                        <h3>Blockchain FLOBNB</h3>
+                        <h3>My FLOBNB on Blockchain</h3>
                         <p id="blockchain-flobnb-balance">-</p>
                     </div>
                 </div>
@@ -404,10 +408,6 @@
                     <sm-button id='subadmin-form-submit-button' variant='primary' onClick='confirmSubmitForm()'>Submit
                     </sm-button>
                 </sm-form>
-
-                <p>Excel upload</p>
-                <file-input multiple>Select file</file-input>
-
             </section>
         </article>
     </main>
@@ -597,6 +597,10 @@
                 "flobnb-price",
                 formatAmount(parseFloat(rates['flobnb']))
             );
+            update_element(
+                "flobnb-price-userpage",
+                formatAmount(parseFloat(rates['flobnb']))
+            );            
             update_element(
                 "total-amount-issued",
                 formatAmount(parseFloat(localStorage.getItem("total_amount")))
@@ -1232,6 +1236,7 @@
                 window.location.hash = '#userinfo';
                 getRef('user_flo_id').value = myFloID
                 getRef('user_login_popup_button').classList.add('hide')
+                getRef('userpage-userfloid').innerText = myFloID
                 getRef('user_signout_popup_button').classList.remove('hide')
 
                 // Check if subadmin 
