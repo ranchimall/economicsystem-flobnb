@@ -600,7 +600,7 @@
             update_element(
                 "flobnb-price-userpage",
                 formatAmount(parseFloat(rates['flobnb']))
-            );            
+            );
             update_element(
                 "total-amount-issued",
                 formatAmount(parseFloat(localStorage.getItem("total_amount")))
@@ -759,7 +759,7 @@
                         console.log("CALLBACK");
                         if (e) return;
                         let consumer_split =
-                                parseFloat(localStorage.getItem("consumer_split")) || 0,
+                            parseFloat(localStorage.getItem("consumer_split")) || 0,
                             producer_split =
                                 parseFloat(localStorage.getItem("producer_split")) || 0,
                             investor_split =
@@ -833,7 +833,6 @@
             getRef('tx-popup-referrer-tokens').value = referrer_split;
             getRef('tx-popup-technology-tokens').value = technology_provider_split;
             getRef('tx-popup-txid').value = txid;
-
 
         }
 
@@ -1137,50 +1136,49 @@
                 if (data.referrer_split)
                     receivers[data.referrer_floid] =
                         (receivers[data.referrer_floid] || 0) + data.referrer_split;
-                /*floExchangeAPI
+                floExchangeAPI
                     .transferToken(receivers, "flobnb", myFloID, myPrivKey)
-                    .then((txid) => { */
-                let sensitiveData = {
-                    consumer_name: data.consumer_name,
-                    consumer_upi_address: data.consumer_upi_address,
-                    consumer_email: data.consumer_email,
-                    referrer_name: data.referrer_name,
-                };
+                    .then((txid) => {
+                        let sensitiveData = {
+                            consumer_name: data.consumer_name,
+                            consumer_upi_address: data.consumer_upi_address,
+                            consumer_email: data.consumer_email,
+                            referrer_name: data.referrer_name,
+                        };
 
-                let cloudData = {
-                    privacy_data: floCrypto.encryptData(
-                        JSON.stringify(sensitiveData),
-                        floGlobals.appObjects["flobnb_base"]["encrypt_key"]
-                    ),
+                        let cloudData = {
+                            privacy_data: floCrypto.encryptData(
+                                JSON.stringify(sensitiveData),
+                                floGlobals.appObjects["flobnb_base"]["encrypt_key"]
+                            ),
 
-                    consumer_floid: data.consumer_floid,
-                    consumer_amount: data.consumer_amount,
-                    consumer_split: data.consumer_split,
+                            consumer_floid: data.consumer_floid,
+                            consumer_amount: data.consumer_amount,
+                            consumer_split: data.consumer_split,
 
-                    investor_floid: data.investor_floid,
-                    investor_split: data.investor_split,
+                            investor_floid: data.investor_floid,
+                            investor_split: data.investor_split,
 
-                    property_floid: data.property_floid,
-                    producer_split: data.producer_split,
+                            property_floid: data.property_floid,
+                            producer_split: data.producer_split,
 
-                    referrer_floid: data.referrer_floid,
-                    referrer_split: data.referrer_split,
+                            referrer_floid: data.referrer_floid,
+                            referrer_split: data.referrer_split,
 
-                    technology_provider_split: data.technology_provider_split,
-                    flobnb_distributed: flobnb_tokens_tobereleased,
-                    txid: txid,
+                            technology_provider_split: data.technology_provider_split,
+                            flobnb_distributed: flobnb_tokens_tobereleased,
+                            txid: txid,
 
-                    from_date: data.from_date,
-                    to_date: data.to_date,
-                    days_stayed: data.days_stayed,
-                };
-                console.log(cloudData);
-                /*floCloudAPI
-                    .sendGeneralData(cloudData, "flobnb_data")
-                    .then((result) => resolve(result))
-                    .catch((error) => reject(error));*/
-                /*})
-                .catch((error) => reject(error));*/
+                            from_date: data.from_date,
+                            to_date: data.to_date,
+                            days_stayed: data.days_stayed,
+                        };
+                        floCloudAPI
+                            .sendGeneralData(cloudData, "flobnb_data")
+                            .then((result) => resolve(result))
+                            .catch((error) => reject(error));
+                    })
+                    .catch((error) => reject(error));
             });
         }
 
