@@ -112,6 +112,11 @@
         <section class="grid gap-1-5">
             <div class="grid gap-1">
                 <div class="grid">
+                    <h5>Reset App Data?</h5>
+                </div>
+                <sm-button id='clearLocalData_button' class="danger cta justify-self-start" onclick="clearLocalData()">Reset Data
+                </sm-button>
+                <div class="grid">
                     <h5>My FLO ID</h5>
                     <sm-copy id="user_flo_id" clip-text></sm-copy>
                 </div>
@@ -546,7 +551,6 @@
 
     </script>
     <script>
-
         const render = {
             transactionCard({ userRole, details, vectorClock }) {
                 const clone = getRef(userRole == 'consumer' ? 'tx-card-1' : 'tx-card-2').content.cloneNode(true).firstElementChild;
@@ -894,6 +898,19 @@
                         location.reload()
                     }
                 })
+        }
+
+        function clearLocalData(){
+            floDapps.deleteAppData(false).then(r => { 
+                localStorage.removeItem("consumer_split");
+                localStorage.removeItem("producer_split");
+                localStorage.removeItem("investor_split");
+                localStorage.removeItem("referrer_split");
+                localStorage.removeItem("technology_provider_split");
+                localStorage.removeItem("total_amount");
+                localStorage.removeItem("total_tokens");
+                location.reload();
+            })
         }
 
         async function confirmSubmitForm() {
