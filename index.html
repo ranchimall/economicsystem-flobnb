@@ -603,7 +603,7 @@
             );
             update_element(
                 "flobnb-price-userpage",
-                formatAmount(parseFloat(rates['flobnb']))
+                formatAmount(parseFloat(rates.rates['flobnb']))
             );
             update_element(
                 "total-amount-issued",
@@ -728,7 +728,7 @@
                         blockchain_data["balance"] = 0;
                     update_element("blockchain-flobnb-balance", `${parseFloat(blockchain_data["balance"])} flobnb#`);
                     update_element("total-flobnb-balance", `${parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance)} flobnb#`);
-                    update_element("total-flobnb-valuation", formatAmount((parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance)) * parseFloat(results[2].flobnb)));
+                    update_element("total-flobnb-valuation", formatAmount((parseFloat(blockchain_data["balance"]) + parseFloat(results[0].balance)) * parseFloat(results[2].rates.flobnb)));
                 });
             });
 
