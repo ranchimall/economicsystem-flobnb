@@ -599,7 +599,7 @@
             rates = await floExchangeAPI.getRates();
             update_element(
                 "flobnb-price",
-                formatAmount(parseFloat(rates['flobnb']))
+                formatAmount(parseFloat(rates.rates['flobnb']))
             );
             update_element(
                 "flobnb-price-userpage",
